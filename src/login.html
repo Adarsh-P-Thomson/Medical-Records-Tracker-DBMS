@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records Manager - Login</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('hospitalpicture.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-container img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .login-container h1 {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .login-container label {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .login-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-container button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="logo.png" alt="Medical Records Manager Logo">
+        <h1>Medical Records Manager</h1>
+        <form>
+            <label for="id">Verification ID no:</label>
+            <input type="text" id="id" name="id" placeholder="Enter your Hospital ID">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <label for="role">
+                <input type="checkbox" id="role" name="role" onclick="toggleRole()">
+                Login as <span id="role-text">Hospital</span>
+            </label>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleRole() {
+            const checkbox = document.getElementById('role');
+            const idInput = document.getElementById('id');
+            const roleText = document.getElementById('role-text');
+
+            if (checkbox.checked) {
+                idInput.placeholder = 'Enter your Aadhar Card';
+                roleText.textContent = 'Hospital';
+            } else {
+                idInput.placeholder = 'Enter your Hospital ID';
+                roleText.textContent = 'User';
+            }
+        }
+    </script>
+</body>
+</html>
