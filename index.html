@@ -3,31 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Record Tracker</title>
-    <link rel="stylesheet" href="docs/styles.css">
-    <script src="retrieve.js"></script>
+    <title>Medical Records Manager</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background: url('src/hospitalpicture.jpg') no-repeat center center fixed;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(125, 123, 123, 0.5);
+            padding: 10px 20px;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .content h1 {
+            font-size: 3em;
+            margin: 0.5em 0;
+        }
+
+        .content p {
+            font-size: 1.5em;
+        }
+
+        .footer {
+            background: rgba(91, 99, 104, 0.5);
+            padding: 10px;
+            text-align: center;
+        }
+
+        .red-cross {
+            position: relative;
+            display: inline-block;
+        }
+
+        .red-cross img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
-    <div class="video-background">
-        <video autoplay muted loop id="bg-video">
-            <source src="docs/hospitalvideo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="src/logo.png" alt="Medical Records Manager Logo">
+                <span>Medical Records Manager</span>
+            </div>
+            <nav>
+                <a href="about.html">About Us</a>
+                <a href="login.html">Login</a>
+            </nav>
+        </div>
+        <div class="content">
+            <h1>Welcome to our Medical Records Manager</h1>
+            <p>Aiming for a safer and healthier future.<br>Sponsored By the Red Cross.</p>
+            <div class="red-cross">
+                <img src="src/redcross.png" alt="Red Cross">
+            </div>
+        </div>
+        <div class="footer">
+            &copy; 2024 Medical Records Manager. All rights reserved.
+        </div>
     </div>
-    <header>
-        <div class="logo-container">
-            <img src="docs/pharma.png" alt="Hospital Logo" class="logo"> <!-- Add your logo image here -->
-        </div>
-        <h1>Welcome to Medical Record Tracker</h1>
-    </header>
-    <main>
-        <div class="container">
-            <h2>Select an Option</h2>
-            <a href="docs/login.html" class="button">User Login</a>
-            <a href="docs/register.html" class="button">User Register</a>
-            <a href="docs/hospital-login.html" class="button">Hospital Login</a>
-            <a href="docs/hospital-register.html" class="button">Hospital Register</a>
-        </div>
-    </main>
 </body>
 </html>
