@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>User Dashboard</h2>
+        <div class="user-info">
+            <p><strong>Name:</strong> <%= data[0].name %></p>
+            <p><strong>Aadhar Card no.:</strong> <%= data[0].cardno %></p>
+            <p><strong>Date of Birth:</strong> <%= data[0].dateofbirth %></p>
+            <p><strong>Phone no.:</strong> <%= data[0].phoneno %></p>
+            <p><strong>Address:</strong> <%= data[0].address %></p>
+            <p><strong>State:</strong> <%= data[0].state %></p>
+            <p><strong>City:</strong> <%= data[0].city %></p>
+            <p><strong>Pincode:</strong> <%= data[0].pincode %></p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Disease name</th>
+                    <th>Hospital</th>
+                    <th>Address</th>
+                    <th>Treated from</th>
+                    <th>Treated to</th>
+                    <th>Current status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(record => { %>
+                    <tr>
+                        <td><%= record.diseasename %></td>
+                        <td><%= record.hospitalname %></td>
+                        <td><%= record.hospitaladdress %></td>
+                        <td><%= record.treatedfrom %></td>
+                        <td><%= record.treatedto %></td>
+                        <td><%= record.currentstatus %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
