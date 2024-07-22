@@ -72,11 +72,50 @@
         }
     </style>
 </head>
+<script>
+  function toggleRole() {
+    const checkbox = document.getElementById('role');
+    const idInput = document.getElementById('id');
+    const roleText = document.getElementById('role-text');
+
+    if (checkbox.checked) {
+      idInput.placeholder = 'Enter your Aadhar Card';
+      roleText.textContent = 'Hospital';
+    } else {
+      idInput.placeholder = 'Enter your Hospital ID';
+      roleText.textContent = 'User';
+    }
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('id').value;
+    const password = document.getElementById('password').value;
+    const role = document.getElementById('role').checked ? 'on' : 'off';
+
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password, role })
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      window.location.href = '/user_dashboard';
+    } else {
+      document.getElementById('errorMsg').innerText = result.message;
+    }
+  });
+</script>
 <body>
     <div class="login-container">
         <img src="logo.png" alt="Medical Records Manager Logo">
         <h1>Medical Records Manager</h1>
-        <form>
+        <form id="loginForm">
             <label for="id">Verification ID no:</label>
             <input type="text" id="id" name="id" placeholder="Enter your Hospital ID">
 
@@ -92,20 +131,6 @@
         </form>
     </div>
 
-    <script>
-        function toggleRole() {
-            const checkbox = document.getElementById('role');
-            const idInput = document.getElementById('id');
-            const roleText = document.getElementById('role-text');
-
-            if (checkbox.checked) {
-                idInput.placeholder = 'Enter your Aadhar Card';
-                roleText.textContent = 'Hospital';
-            } else {
-                idInput.placeholder = 'Enter your Hospital ID';
-                roleText.textContent = 'User';
-            }
-        }
-    </script>
+    
 </body>
 </html>

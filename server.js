@@ -26,8 +26,43 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/src/login.html');
 });
+app.post('/login',(req,res)=>{
+    res.render("views/test.ejs")
+    const username = req.body.username;
+    const password = req.body.password;
+    const role=req.body.role;
+    if(username && password &&role){
+        let query = '';
+        if (role === 'on') {
+            query = `SELECT password FROM hospital_users WHERE hospital_username = ${id}`;
+        } else {
+            query = `SELECT password FROM users WHERE username = ${id}`;
+        }
+        db.query(query,[ id],(err, result) => {
+            if (err) throw err;
 
-app.post('/auth', (req, res) => {
+            if (result.length > 0) {
+                if (result[0].password === password) {
+                    req.session.loggedin = true;
+                    req.session.username = id;
+                    req.session.role = role;
+                    if (role === 'on') {
+                        res.redirect('/hospital_dashboard');
+                    } else {
+                        res.redirect('/user_dashboard');
+                    }
+                } else {
+                    res.status(401).send('Invalid password.');
+                }
+            } else {
+                res.status(401).send('Invalid username.');
+            }
+
+    });
+    }
+});
+
+app.post('/', (req, res) => {
   const id = req.body.id;
   const password = req.body.password;
   const role = req.body.role;
@@ -62,6 +97,7 @@ app.post('/auth', (req, res) => {
 });
 
 app.get('/user_dashboard', (req, res) => {
+
   if (req.session.loggedin && req.session.role!== 'on') {
       const query = `
           SELECT a.cardno, a.name, a.address, a.state, a.city, a.pincode, a.dateofbirth, a.phoneno, a.emailid,
@@ -73,6 +109,7 @@ app.get('/user_dashboard', (req, res) => {
           WHERE a.cardno =${req.session.id};
       `;
       db.query(query, [req.session.username], (err, results) => {
+        
           if (err) {
               console.error(err);
               res.status(500).send('Error fetching data.');
